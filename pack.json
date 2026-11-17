@@ -1,6 +1,6 @@
 {
  "format": 2,
- "version": "2026-11-17.2",
+ "version": "2026-11-17.3",
  "publishedAt": "2026-11-17",
  "cards": [
   {
@@ -39,7 +39,7 @@
    "why": "변경 기록만 보고도 무엇이 왜 바뀌었는지 알아요.",
    "steps": [
     "feat:(새 기능), fix:(버그 수정)처럼 변경 유형으로 시작한다.",
-    "제목에는 무엇을 바꿨는지, 본문에는 왜 바꿨는지 쓴다.",
+    "콜론 뒤 설명에는 바꾼 내용을 짧게 요약하고, 더 필요한 맥락은 한 줄 띄운 본문에 쓴다.",
     "호환이 깨지는 변경은 유형 뒤에 !를 붙이거나 BREAKING CHANGE로 표시한다."
    ],
    "source": {
@@ -51,7 +51,9 @@
     "note": "GitHub 별 9.3천"
    },
    "checkedAt": "2026-11-17",
-   "addedAt": "2026-11-17"
+   "addedAt": "2026-11-17",
+   "updatedAt": "2026-11-17",
+   "change": "출처에 없는 '본문에는 왜'를 빼고, 설명은 요약, 본문은 맥락이라는 규칙으로 고침"
   },
   {
    "id": "small-changes",
@@ -113,8 +115,8 @@
    "when": "코드 리뷰를 부탁받았을 때",
    "why": "받는 사람이 무엇부터 고칠지 바로 알아요.",
    "steps": [
-    "의견마다 꼭 고칠 것인지, Nit(사소함), Optional(선택), FYI(참고)인지 표시한다.",
-    "의견마다 이유를 함께 쓴다.",
+    "꼭 고칠 것이 아닌 의견에는 Nit(사소함), Optional(선택), FYI(참고) 표시를 붙여, 표시 없는 의견(꼭 고칠 것)과 구분되게 한다.",
+    "도움이 되면 따르는 원칙이나 코드가 나아지는 점을 이유로 덧붙인다.",
     "사람이 아니라 코드와 결과물에 대해 말한다."
    ],
    "source": {
@@ -126,7 +128,9 @@
     "note": "GitHub 별 2.3만"
    },
    "checkedAt": "2026-11-17",
-   "addedAt": "2026-11-17"
+   "addedAt": "2026-11-17",
+   "updatedAt": "2026-11-17",
+   "change": "출처에 맞춰 표시는 선택 의견에만 붙이고, 이유는 도움이 될 때 덧붙이는 것으로 고침"
   },
   {
    "id": "pull-request",
@@ -138,20 +142,22 @@
    "when": "PR을 만들 때",
    "why": "작업 중인 PR이 실수로 merge되지 않아요.",
    "steps": [
-    "아직 준비되지 않았으면 Draft PR로 연다.",
-    "준비되면 검토 요청으로 바꾼다.",
-    "설명에는 무엇을, 왜 바꿨는지와 어떻게 확인했는지 쓴다."
+    "아직 준비되지 않았으면 Draft PR로 연다. Draft인 동안에는 merge되지 않으므로, 작업 중인 코드가 실수로 합쳐질 걱정이 없다.",
+    "준비되면 Ready for review로 바꾼다. 코드 소유자가 정해진 저장소라면 이 시점에 그들에게 검토 요청이 자동으로 간다.",
+    "받은 의견을 아직 반영하는 중이면 다시 Draft로 돌려 그 사실을 알린다."
    ],
    "source": {
-    "title": "GitHub Docs: About pull requests",
-    "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests"
+    "title": "GitHub Docs: Changing the stage of a pull request",
+    "url": "https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/changing-the-stage-of-a-pull-request"
    },
    "popularity": {
     "basis": "official",
     "note": "GitHub 공식 문서"
    },
    "checkedAt": "2026-11-17",
-   "addedAt": "2026-11-17"
+   "addedAt": "2026-11-17",
+   "updatedAt": "2026-11-17",
+   "change": "출처 문서가 옮겨져 Draft 문서로 바꾸고, 출처에 없던 설명 줄을 빼고 Draft로 되돌리기를 더함"
   },
   {
    "id": "changelog",
@@ -194,6 +200,278 @@
    "popularity": {
     "basis": "official",
     "note": "Figma 공식 도움말"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "repro-test-first",
+   "moment": "fix",
+   "roles": [
+    "developer"
+   ],
+   "title": "재현 테스트로 버그 고치기",
+   "when": "재현할 수 있는 버그를 고칠 때",
+   "why": "고쳐졌는지를 말이 아니라 테스트 결과로 알 수 있어요.",
+   "steps": [
+    "고치기 전에 증상을 재현해 실패하는 테스트를 먼저 쓴다.",
+    "테스트가 실패하는 것을 확인한 뒤 코드를 고친다.",
+    "고친 뒤 같은 테스트를 다시 돌려 통과하는지 보고, 돌린 명령과 결과를 결과에 적는다."
+   ],
+   "source": {
+    "title": "Best practices for Claude Code",
+    "url": "https://code.claude.com/docs/en/best-practices"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "Anthropic 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "spec-first",
+   "moment": "ask",
+   "roles": [
+    "planner",
+    "developer"
+   ],
+   "title": "명세부터 정하기",
+   "when": "만들 것이 아직 덜 정해진 기능 요청을 받았을 때",
+   "why": "만든 뒤에 다시 고치는 일이 줄고, 끝났는지 판단할 기준이 생겨요.",
+   "steps": [
+    "바로 만들지 않고, 정해지지 않은 부분(누구에게 적용할지, 예외일 때 어떻게 할지, 무엇을 빼는지)을 찾는다.",
+    "그 부분을 고를 수 있는 선택지가 있는 질문으로 묻는다.",
+    "답을 모아 명세 문서로 정리하고, 만들 때와 검토할 때 끝 기준으로 쓴다."
+   ],
+   "source": {
+    "title": "Best practices for Claude Code",
+    "url": "https://code.claude.com/docs/en/best-practices"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "Anthropic 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "review-against-spec",
+   "moment": "check",
+   "roles": [
+    "developer"
+   ],
+   "title": "명세에 맞춰 검토하기",
+   "when": "명세나 계획이 있는 작업의 변경을 검토할 때",
+   "why": "꼭 필요한 빈틈만 받아서, 쓸데없는 수정이 늘지 않아요.",
+   "steps": [
+    "변경을 명세와 하나씩 맞춰 보고, 빠진 요구사항이 있는지 확인한다.",
+    "명세에 적힌 예외 경우마다 테스트가 있는지 확인한다.",
+    "동작이 맞는지에 영향을 주는 빈틈만 보고하고, 스타일 의견은 건너뛴다.",
+    "일어날 수 없는 경우를 위한 테스트나 추상화를 더하자고 하지 않는다."
+   ],
+   "source": {
+    "title": "Best practices for Claude Code",
+    "url": "https://code.claude.com/docs/en/best-practices"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "Anthropic 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "change-description",
+   "moment": "hand",
+   "roles": [
+    "developer"
+   ],
+   "title": "변경 설명 쓰기",
+   "when": "PR이나 변경 요청의 설명을 쓸 때",
+   "why": "나중에 기록만 찾아봐도 무엇을 왜 바꿨는지 알아요.",
+   "steps": [
+    "첫 줄은 무엇을 하는 변경인지 그 줄만 읽어도 알 수 있는 짧은 명령문으로 쓰고, 한 줄 띄운다.",
+    "본문에는 어떤 문제를 풀었는지, 왜 이 방법을 골랐는지, 아쉬운 점이 있으면 무엇인지 쓴다.",
+    "관련이 있으면 버그 번호, 측정 결과, 설계 문서 같은 배경을 넣는다. 링크는 나중에 못 열 수 있으니 이해에 필요한 맥락은 설명에 직접 적는다.",
+    "\"버그 수정\"처럼 아무것도 알려 주지 않는 설명은 쓰지 않는다.",
+    "올리기 전에 설명이 최종 변경 내용과 맞는지 다시 확인한다."
+   ],
+   "source": {
+    "title": "Google Engineering Practices: Writing good CL descriptions",
+    "url": "https://google.github.io/eng-practices/review/developer/cl-descriptions.html"
+   },
+   "popularity": {
+    "basis": "github",
+    "note": "GitHub 별 2.3만"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "handle-review-comments",
+   "moment": "reply",
+   "roles": [
+    "developer"
+   ],
+   "title": "리뷰 의견에 답하기",
+   "when": "내 변경에 달린 코드 리뷰 의견에 답할 때",
+   "why": "리뷰가 말다툼이 아니라 코드를 낫게 하는 대화로 끝나요.",
+   "steps": [
+    "의견이 무엇을 원하는지 먼저 확인하고, 모르면 되묻는다.",
+    "검토자가 코드를 이해하지 못했으면 답글로 설명하기보다 코드를 알기 쉽게 고친다. 그럴 수 없으면 코드에 이유를 주석으로 남긴다.",
+    "동의하지 않으면 거절만 하지 말고 이유와 장단점을 설명한 뒤 검토자의 생각을 묻는다.",
+    "검토자가 모르는 사용자나 코드 사정을 알고 있으면 그 맥락을 알려 준다.",
+    "말투가 거친 의견에도 화내지 않고 정중하게 답한다."
+   ],
+   "source": {
+    "title": "Google Engineering Practices: How to handle reviewer comments",
+    "url": "https://google.github.io/eng-practices/review/developer/handling-comments.html"
+   },
+   "popularity": {
+    "basis": "github",
+    "note": "GitHub 별 2.3만"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "pr-self-review",
+   "moment": "hand",
+   "roles": [
+    "developer"
+   ],
+   "title": "PR 올리기 전에 스스로 훑어보기",
+   "when": "PR을 만들거나 검토를 요청하기 직전에",
+   "why": "검토자가 실수를 찾는 대신 중요한 부분에 시간을 써요.",
+   "steps": [
+    "검토를 요청하기 전에 diff를 직접 읽고 의도하지 않은 변경이 섞였는지 본다.",
+    "관련 빌드와 테스트가 돌았는지 확인한다.",
+    "설명에 왜 필요한 변경인지와 검토자가 먼저 볼 곳을 적고, 큰 PR이면 볼 파일 순서를 알려 준다.",
+    "의존성, 인증, 권한, 워크플로, 민감한 데이터를 건드린 변경이면 의존성 검토와 코드 스캔 결과를 보고, 먼저 고치거나 검토자가 봐야 할 위험을 설명에 밝힌다.",
+    "닫을 이슈가 있으면 closes 같은 키워드로 연결한다."
+   ],
+   "source": {
+    "title": "GitHub Docs: Helping others review your changes",
+    "url": "https://docs.github.com/en/pull-requests/concepts/helping-others-review-your-changes"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "GitHub 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "stacked-prs",
+   "moment": "hand",
+   "roles": [
+    "developer"
+   ],
+   "title": "큰 변경을 쌓인 PR로 나누기",
+   "when": "다음 변경이 아직 merge되지 않은 변경에 기대거나, 한 브랜치가 너무 커졌을 때",
+   "why": "리뷰를 기다리지 않고 이어서 일하면서도, PR 하나하나는 보기 쉬워요.",
+   "steps": [
+    "PR 하나에는 따로 검토할 수 있는 한 가지 변경만 담는다.",
+    "타입, 스키마 같은 공통 기반은 아래 층에, 그것에 기대는 코드는 위 층에 둔다.",
+    "지금까지 만든 것에 기대는 다른 종류의 일(예: 백엔드를 마치고 프런트엔드)을 시작하면 그 위에 새 층의 브랜치를 만든다.",
+    "쌓을 브랜치는 모두 한 저장소 안에 만든다. 포크에 있는 브랜치는 이 방식으로 쌓을 수 없다.",
+    "각 PR은 따로 검토받고, 아래 층부터 위로 merge되는 순서를 지킨다."
+   ],
+   "source": {
+    "title": "GitHub Docs: About stacked pull requests",
+    "url": "https://docs.github.com/en/pull-requests/get-started/about-stacked-prs"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "GitHub 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "accessibility-easy-checks",
+   "moment": "check",
+   "roles": [
+    "designer",
+    "developer"
+   ],
+   "title": "접근성 기본 확인하기",
+   "when": "웹 화면이나 디자인 시안을 넘기기 전에",
+   "why": "많은 사람이 막히는 기본 문제를 일찍 찾아요.",
+   "steps": [
+    "페이지 제목, 이미지 대체 텍스트, 제목(heading) 구조가 있는지 확인한다.",
+    "글자, 컨트롤, 차트 요소가 배경과 충분히 대비되는지 확인한다.",
+    "키보드로 이동할 때 포커스가 눈에 보이는지, 본문으로 건너뛰는 링크가 있는지 확인한다.",
+    "글자를 크게 키워도 내용을 읽고 쓸 수 있는지 확인한다.",
+    "입력칸마다 무엇을 넣을지 알려 주는 라벨과 필수 표시가 있는지 확인한다.",
+    "영상과 음성에 자막, 대본, 화면 설명이 있는지 확인한다.",
+    "이 확인은 일부 문제만 찾으므로, 통과해도 접근성이 다 됐다고 적지 않는다."
+   ],
+   "source": {
+    "title": "W3C WAI: Easy Checks – A First Review of Web Accessibility (Draft)",
+    "url": "https://www.w3.org/WAI/test-evaluate/easy-checks/"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "W3C 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "figma-file-for-code",
+   "moment": "hand",
+   "roles": [
+    "designer",
+    "developer"
+   ],
+   "title": "코드로 옮길 Figma 파일 다듬기",
+   "when": "AI가 코드로 옮길 Figma 디자인을 넘기거나 받을 때",
+   "why": "AI가 값을 짐작하지 않고 실제 컴포넌트와 토큰으로 코드를 만들어요.",
+   "steps": [
+    "버튼, 카드, 입력칸처럼 반복되는 요소가 컴포넌트인지 확인하고, 아니면 고칠 곳으로 적는다.",
+    "색, 간격, 모서리, 글꼴이 변수로 정의되어 있는지 확인한다.",
+    "Frame1268 같은 기본 이름 대신 용도를 말하는 레이어 이름인지 확인한다.",
+    "auto layout으로 반응형 동작이 드러나는지, 프레임 크기를 바꿔도 의도대로 움직이는지 확인한다.",
+    "그림만으로 알기 어려운 동작, 정렬, 반응형 규칙은 주석(annotation)으로 남긴다.",
+    "Code Connect로 연결된 컴포넌트가 있으면 새로 만들지 않고 그 코드 컴포넌트를 쓴다."
+   ],
+   "source": {
+    "title": "Figma Developer Docs: Structure your Figma file for better code",
+    "url": "https://developers.figma.com/docs/figma-mcp-server/structure-figma-file"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "Figma 공식 문서"
+   },
+   "checkedAt": "2026-11-17",
+   "addedAt": "2026-11-17"
+  },
+  {
+   "id": "slack-reply",
+   "moment": "reply",
+   "roles": [
+    "all"
+   ],
+   "title": "Slack 답장 쓰기",
+   "when": "Slack에서 받은 요청에 답장 초안을 쓸 때",
+   "why": "받는 사람이 알림 한 번에 필요한 내용을 다 읽어요.",
+   "steps": [
+    "인사만 따로 보내지 않고, 할 말을 한 메시지에 모두 담는다.",
+    "긴 답장은 글머리표와 굵은 글씨로 핵심이 바로 보이게 쓴다.",
+    "이어지는 논의는 원래 메시지의 스레드에 답한다.",
+    "스레드에서 큰 결정이나 마감 변경이 나오면 채널에도 함께 보낼지 사용자에게 묻는다.",
+    "\"알겠어요\" 같은 짧은 확인은 답장 대신 이모지 반응으로 할 수 있다고 알려 준다.",
+    "@멘션은 특정한 요청이나 급한 일에만 쓴다."
+   ],
+   "source": {
+    "title": "Slack: Collaborate with kindness: Consider these etiquette tips in Slack",
+    "url": "https://slack.com/blog/collaboration/etiquette-tips-in-slack"
+   },
+   "popularity": {
+    "basis": "official",
+    "note": "Slack 공식 블로그"
    },
    "checkedAt": "2026-11-17",
    "addedAt": "2026-11-17"
